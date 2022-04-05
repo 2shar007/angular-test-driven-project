@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 import { BookComponent } from './book.component';
@@ -12,6 +13,9 @@ describe('BookComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        FormsModule
+      ],
       declarations: [ BookComponent ],
       providers: [
         { provide: MAT_DIALOG_DATA, useValue: {} }
@@ -33,14 +37,14 @@ describe('BookComponent', () => {
   it('should show title', () => {
 
     expect(el('[data-test="title"]').textContent)
-      .toContain('Home 1');
+      .toContain('Book Home 1');
 
   });
 
   it('should show price', () => {
 
     expect(el('[data-test="price"]').textContent)
-      .toContain('125');
+      .toContain('$1000 per night');
 
   });
 
@@ -55,6 +59,25 @@ describe('BookComponent', () => {
 
     expect(el('[data-test="check-out"]'))
       .toBeTruthy();
+
+  });
+  it('should show total', () => {
+
+    // user enters check in date: 12/20/19
+    const checkIn = el('[data-test="check-in"] input');
+    checkIn.value = '12/20/19';
+    checkIn.dispatchEvent(new Event('input'));
+
+    // user enter check out date: 12/23/19
+    const checkOut = el('[data-test="check-out"] input');
+    checkOut.value = '12/23/19';
+    checkOut.dispatchEvent(new Event('input'));
+
+    fixture.detectChanges();
+
+    // assert that the total shows 3x1000=3000
+    expect(el('[data-test="total"]').textContent)
+      .toContain('Total: $3000');
 
   });
 });

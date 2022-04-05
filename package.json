@@ -22,6 +22,7 @@
     "@angular/router": "~13.3.0",
     "jasmine-es6-spies": "^0.0.4",
     "jquery": "^3.6.0",
+    "moment": "^2.29.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "uikit": "^3.13.5",
