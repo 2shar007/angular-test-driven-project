@@ -5,6 +5,11 @@ import { DataService } from '../../services/data.service';
 import { spyOnClass } from 'jasmine-es6-spies';
 import { of } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { BookComponent } from './book.component';
 
@@ -21,7 +26,12 @@ describe('BookComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        FormsModule
+        FormsModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatFormFieldModule,
+        MatInputModule,
+        BrowserAnimationsModule
       ],
       declarations: [ BookComponent ],
       providers: [
